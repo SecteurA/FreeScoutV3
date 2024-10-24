@@ -1,3 +1,4 @@
+
 import { lazy, Suspense } from 'react';
 
 const Hero = lazy(() => import('./Hero'));
@@ -9,11 +10,25 @@ const FAQ = lazy(() => import('./FAQ'));
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Hero />
-      <Features />
-      <Pricing />
-      <Testimonials />
-      <FAQ />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Hero />
+      </Suspense>
+      
+      <Suspense fallback={<div>Loading...</div>}>
+        <Features />
+      </Suspense>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Pricing />
+      </Suspense>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Testimonials />
+      </Suspense>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <FAQ />
+      </Suspense>
     </div>
   );
 }
