@@ -21,7 +21,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What are the server requirements?",
-    answer: "FreeScout requires a Linux server with PHP 7.3+ and MySQL/MariaDB. We'll help you verify if your server meets all requirements before installation."
+    answer: "In order to install FreeScout professionally on your server, you'll need a VPS with the latest version of Ubuntu installed. This ensures compatibility with the software and provides a stable environment for optimal performance."
   },
   {
     question: "Can you help with data migration?",
