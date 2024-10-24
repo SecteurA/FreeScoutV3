@@ -1,5 +1,3 @@
-import { lazy, Suspense } from 'react';
-
 const Hero = lazy(() => import('./Hero'));
 const Features = lazy(() => import('./Features'));
 const Pricing = lazy(() => import('./Pricing'));
