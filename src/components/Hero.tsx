@@ -9,6 +9,7 @@ export default function Hero() {
         backgroundSize: 'cover',
         aspectRatio: '16/9'
       }}
+      loading="eager" // Ensure immediate loading
     >
       <div className="absolute inset-0 bg-white/80"></div>
       
