@@ -1,5 +1,5 @@
 import { lazy, useState } from 'react';
-import { Package, Mail, Phone, User, CheckCircle, AlertCircle, DollarSign } from 'lucide-react';
+import { Package, Mail, Phone, User, CheckCircle, AlertCircle, DollarSign, Shield, Zap, Clock } from 'lucide-react';
 import PayPalButton from './PayPalButton';
 
 const FAQ = lazy(() => import('./FAQ'));
@@ -54,6 +54,27 @@ export default function InstallFreescout() {
     }
   ];
 
+  const installInfo = [
+    {
+      icon: Shield,
+      title: "Secure Setup",
+      details: "Enterprise Security",
+      color: "text-blue-500"
+    },
+    {
+      icon: Clock,
+      title: "Quick Install",
+      details: "Within 24 Hours",
+      color: "text-green-500"
+    },
+    {
+      icon: Zap,
+      title: "Expert Support",
+      details: "24/7 Assistance",
+      color: "text-purple-500"
+    }
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -105,15 +126,66 @@ export default function InstallFreescout() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-b from-primary-50 to-white pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Get Started with FreeScout
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Professional installation service by certified experts. We'll have your helpdesk up and running in no time.
-            </p>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight animate-slideInLeft">
+                  Start Your FreeScout
+                  <span className="text-[#75b666]"> Installation</span> Today
+                </h1>
+                <p className="text-xl text-gray-300 animate-slideInLeft" style={{ animationDelay: "100ms" }}>
+                  Professional setup and configuration by certified experts. Get your help desk running in no time.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {installInfo.map((info, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm rounded-lg p-4 animate-slideUp"
+                    style={{ animationDelay: `${(index + 2) * 100}ms` }}
+                  >
+                    <div className={`${info.color} mb-3`}>
+                      <info.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-semibold">{info.title}</h3>
+                    <p className="text-sm text-gray-300">{info.details}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 animate-slideInRight">
+              <div className="text-center space-y-6">
+                <h3 className="text-2xl font-bold">Installation Benefits</h3>
+                <ul className="space-y-4 text-left">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#75b666]" />
+                    <span>Professional Server Configuration</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#75b666]" />
+                    <span>SSL Certificate Setup</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#75b666]" />
+                    <span>Email System Integration</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#75b666]" />
+                    <span>Security Hardening</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-[#75b666]" />
+                    <span>30 Days Support Included</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +193,7 @@ export default function InstallFreescout() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="p-8 sm:p-12">
+            <div className="p-8">
               {error && (
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
                   <AlertCircle className="h-5 w-5" />
