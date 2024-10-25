@@ -1,7 +1,7 @@
 import sgMail from '@sendgrid/mail';
 
 // Initialize SendGrid with your API key
-sgMail.setApiKey('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');
+sgMail.setApiKey(import.meta.env.VITE_SENDGRID_API_KEY || '');
 
 interface EmailData {
   name: string;
@@ -10,9 +10,24 @@ interface EmailData {
 }
 
 export const sendEmail = async (data: EmailData) => {
+  // Validate API key
+  if (!import.meta.env.VITE_SENDGRID_API_KEY) {
+    console.error('SendGrid API key is not configured');
+    return { success: false, error: 'Email service not configured' };
+  }
+
+  // Validate input data
+  if (!data.name || !data.email || !data.phone) {
+    console.error('Missing required fields:', data);
+    return { success: false, error: 'Missing required fields' };
+  }
+
   const msg = {
     to: 'contact@freescout-installation.com',
-    from: 'contact@freescout-installation.com', // Updated from address
+    from: {
+      email: 'contact@freescout-installation.com',
+      name: 'FreeScout Installation Service'
+    },
     subject: 'New Contact Request - FreeScout Installation',
     text: `
       New contact request received:
@@ -33,10 +48,21 @@ export const sendEmail = async (data: EmailData) => {
   };
 
   try {
-    await sgMail.send(msg);
+    const response = await sgMail.send(msg);
+    console.log('Email sent successfully:', response);
     return { success: true };
   } catch (error) {
-    console.error('Error sending email:', error);
-    return { success: false, error };
+    // Log the full error for debugging
+    console.error('SendGrid Error:', {
+      error,
+      statusCode: error?.code,
+      message: error?.message,
+      response: error?.response?.body
+    });
+    
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Failed to send email'
+    };
   }
 };
