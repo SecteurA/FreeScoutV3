@@ -1,4 +1,4 @@
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, DollarSign, Shield, Clock, Package } from 'lucide-react';
 import { lazy } from 'react';
 
 const FAQ = lazy(() => import('./FAQ'));
@@ -51,19 +51,89 @@ export default function PricingPage() {
     }
   ];
 
+  const pricingInfo = [
+    {
+      icon: DollarSign,
+      title: "Transparent Pricing",
+      details: "No Hidden Fees",
+      color: "text-blue-500"
+    },
+    {
+      icon: Shield,
+      title: "Secure Setup",
+      details: "Enterprise-Grade Security",
+      color: "text-green-500"
+    },
+    {
+      icon: Package,
+      title: "Full Features",
+      details: "All-Inclusive Packages",
+      color: "text-purple-500"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-primary-50 to-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Simple, Transparent Pricing
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Choose the perfect FreeScout installation package for your business needs. 
-              No hidden fees, just straightforward pricing with expert service.
-            </p>
+      <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight animate-slideInLeft">
+                  Choose Your Perfect
+                  <span className="text-[#75b666]"> Installation</span> Package
+                </h1>
+                <p className="text-xl text-gray-300 animate-slideInLeft" style={{ animationDelay: "100ms" }}>
+                  Professional FreeScout setup with comprehensive support and features to match your needs.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {pricingInfo.map((info, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm rounded-lg p-4 animate-slideUp"
+                    style={{ animationDelay: `${(index + 2) * 100}ms` }}
+                  >
+                    <div className={`${info.color} mb-3`}>
+                      <info.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-semibold">{info.title}</h3>
+                    <p className="text-sm text-gray-300">{info.details}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 animate-slideInRight">
+              <div className="text-center space-y-6">
+                <h3 className="text-2xl font-bold">Why Choose Our Service?</h3>
+                <ul className="space-y-4 text-left">
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-[#75b666]" />
+                    <span>Professional Installation & Configuration</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-[#75b666]" />
+                    <span>24/7 Expert Support Available</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-[#75b666]" />
+                    <span>Secure Server Setup</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-[#75b666]" />
+                    <span>Custom Branding Options</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-[#75b666]" />
+                    <span>One-Time Payment, No Hidden Fees</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,26 +179,6 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-primary-50 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Our team of experts is ready to help you set up and configure your FreeScout installation.
-            Get started today and transform your customer support experience.
-          </p>
-          <a
-            href="/install-freescout.html"
-            className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-[#235585] rounded-md hover:bg-[#75b666] transition-colors"
-          >
-            Request Installation Now
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
         </div>
       </section>
 
