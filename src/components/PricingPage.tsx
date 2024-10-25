@@ -1,4 +1,4 @@
-import { Check, ArrowRight, DollarSign, Shield, Clock, Package } from 'lucide-react';
+import { Check, DollarSign, Shield, Package } from 'lucide-react';
 import { lazy } from 'react';
 
 const FAQ = lazy(() => import('./FAQ'));
