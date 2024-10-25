@@ -9,6 +9,14 @@ interface EmailData {
   phone: string;
 }
 
+interface SendGridError {
+  code?: string;
+  message?: string;
+  response?: {
+    body?: any;
+  };
+}
+
 export const sendEmail = async (data: EmailData) => {
   // Validate API key
   if (!import.meta.env.VITE_SENDGRID_API_KEY) {
@@ -52,17 +60,19 @@ export const sendEmail = async (data: EmailData) => {
     console.log('Email sent successfully:', response);
     return { success: true };
   } catch (error) {
+    const sendGridError = error as SendGridError;
+    
     // Log the full error for debugging
     console.error('SendGrid Error:', {
-      error,
-      statusCode: error?.code,
-      message: error?.message,
-      response: error?.response?.body
+      error: sendGridError,
+      statusCode: sendGridError.code,
+      message: sendGridError.message,
+      response: sendGridError.response?.body
     });
     
     return { 
       success: false, 
-      error: error instanceof Error ? error.message : 'Failed to send email'
+      error: sendGridError.message || 'Failed to send email'
     };
   }
 };
