@@ -1,32 +1,42 @@
-{
-  "name": "freescout-installation-service",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@sendgrid/mail": "^8.1.0",
-    "lucide-react": "^0.344.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.56",
-    "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.18",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "terser": "^5.27.2",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.4"
-  }
+import sgMail from '@sendgrid/mail';
+
+// Initialize SendGrid with your API key
+sgMail.setApiKey('YOUR_SENDGRID_API_KEY');
+
+interface EmailData {
+  name: string;
+  email: string;
+  phone: string;
 }
+
+export const sendEmail = async (data: EmailData) => {
+  const msg = {
+    to: 'contact@freescout-installation.com',
+    from: 'contact@freescout-installation.com', // Updated from address
+    subject: 'New Contact Request - FreeScout Installation',
+    text: `
+      New contact request received:
+      
+      Name: ${data.name}
+      Email: ${data.email}
+      Phone: ${data.phone}
+    `,
+    html: `
+      <h2>New Contact Request</h2>
+      <p>A new contact request has been received:</p>
+      <ul>
+        <li><strong>Name:</strong> ${data.name}</li>
+        <li><strong>Email:</strong> ${data.email}</li>
+        <li><strong>Phone:</strong> ${data.phone}</li>
+      </ul>
+    `,
+  };
+
+  try {
+    await sgMail.send(msg);
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
