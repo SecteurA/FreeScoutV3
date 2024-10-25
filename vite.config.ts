@@ -19,27 +19,11 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           ui: ['lucide-react']
-        },
-        // Add hash to chunk names for better caching
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        }
       }
     },
-    // Enable asset optimization
-    assetsInlineLimit: 4096,
     minify: 'terser',
-    sourcemap: false,
-    // Add cache busting
-    cssCodeSplit: true,
-    modulePreload: {
-      polyfill: true
-    }
+    sourcemap: false
   },
-  // Add caching headers
-  server: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable'
-    }
-  }
+  envPrefix: 'VITE_'
 });
