@@ -1,9 +1,9 @@
-
 import { lazy, Suspense } from 'react';
 
 const Hero = lazy(() => import('./Hero'));
 const Features = lazy(() => import('./Features'));
 const Pricing = lazy(() => import('./Pricing'));
+const StatsSection = lazy(() => import('./StatsSection'));
 const Testimonials = lazy(() => import('./Testimonials'));
 const FAQ = lazy(() => import('./FAQ'));
 
@@ -20,6 +20,10 @@ export default function Home() {
 
       <Suspense fallback={<div>Loading...</div>}>
         <Pricing />
+      </Suspense>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <StatsSection />
       </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>
