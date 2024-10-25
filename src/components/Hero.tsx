@@ -6,7 +6,8 @@ export default function Hero() {
       className="pt-16 min-h-[calc(100vh-180px)] bg-cover bg-center relative animate-fadeIn"
       style={{ 
         backgroundImage: 'url("https://freescout-installation.com/images/2023/10/24/fs-slide.webp")',
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        aspectRatio: '16/9'
       }}
     >
       <div className="absolute inset-0 bg-white/80"></div>
@@ -35,7 +36,7 @@ export default function Hero() {
                 className="flex items-center gap-3 opacity-0 animate-slideInRight"
                 style={{ animationDelay: `${delay}ms` }}
               >
-                <Icon className="h-6 w-6 text-primary-600" />
+                <Icon className="h-6 w-6 text-primary-600 flex-shrink-0" />
                 <span className="text-lg">{text}</span>
               </div>
             ))}
