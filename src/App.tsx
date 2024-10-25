@@ -1,12 +1,9 @@
 import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import Home from './components/Home';
 
 // Lazy load components
-const Hero = lazy(() => import('./components/Hero'));
-const Features = lazy(() => import('./components/Features'));
-const Pricing = lazy(() => import('./components/Pricing'));
-const Testimonials = lazy(() => import('./components/Testimonials'));
 const InstallFreescout = lazy(() => import('./components/InstallFreescout'));
 const ThankYou = lazy(() => import('./components/ThankYou'));
 const About = lazy(() => import('./components/About'));
@@ -38,14 +35,7 @@ const App = () => {
       case '/contact':
         return <Contact />;
       default:
-        return (
-          <>
-            <Hero />
-            <Features />
-            <Pricing />
-            <Testimonials />
-          </>
-        );
+        return <Home />;
     }
   };
 
