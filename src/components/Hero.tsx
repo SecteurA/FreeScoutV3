@@ -44,9 +44,9 @@ export default function Hero() {
           <div className="mb-6">
             <a
               href="/install-freescout.html"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-green-500 rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-105 transform group"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-[#75b666] rounded-lg shadow-lg hover:bg-white hover:text-[#75b666] border-2 border-[#75b666] transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
-              <span className="animate-bounce group-hover:animate-none">GET STARTED NOW</span>
+              GET STARTED NOW
             </a>
           </div>
 
