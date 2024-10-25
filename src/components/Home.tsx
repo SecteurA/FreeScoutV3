@@ -5,7 +5,6 @@ const Features = lazy(() => import('./Features'));
 const Pricing = lazy(() => import('./Pricing'));
 const StatsSection = lazy(() => import('./StatsSection'));
 const Testimonials = lazy(() => import('./Testimonials'));
-const FAQ = lazy(() => import('./FAQ'));
 const CTASection = lazy(() => import('./CTASection'));
 
 export default function Home() {
@@ -33,10 +32,6 @@ export default function Home() {
 
       <Suspense fallback={<div>Loading...</div>}>
         <CTASection />
-      </Suspense>
-
-      <Suspense fallback={<div>Loading...</div>}>
-        <FAQ />
       </Suspense>
     </div>
   );
