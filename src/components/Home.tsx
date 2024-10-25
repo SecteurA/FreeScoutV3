@@ -1,38 +1,38 @@
 import { lazy, Suspense } from 'react';
 
-const Hero = lazy(() => import('./Hero'));
-const Features = lazy(() => import('./Features'));
-const Pricing = lazy(() => import('./Pricing'));
+// Eagerly import critical components
+import Hero from './Hero';
+import Features from './Features';
+import Pricing from './Pricing';
+import CTASection from './CTASection';
+
+// Lazy load less critical components
 const StatsSection = lazy(() => import('./StatsSection'));
 const Testimonials = lazy(() => import('./Testimonials'));
-const CTASection = lazy(() => import('./CTASection'));
+
+// Loading placeholder with fixed dimensions
+const LoadingPlaceholder = () => (
+  <div className="min-h-[400px] w-full flex items-center justify-center bg-gray-50">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#75b666]"></div>
+  </div>
+);
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Hero />
-      </Suspense>
+      <Hero />
+      <Features />
+      <Pricing />
       
-      <Suspense fallback={<div>Loading...</div>}>
-        <Features />
-      </Suspense>
-
-      <Suspense fallback={<div>Loading...</div>}>
-        <Pricing />
-      </Suspense>
-
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingPlaceholder />}>
         <StatsSection />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingPlaceholder />}>
         <Testimonials />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <CTASection />
-      </Suspense>
+      <CTASection />
     </div>
   );
 }
