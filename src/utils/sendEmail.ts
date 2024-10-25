@@ -1,7 +1,7 @@
 import sgMail from '@sendgrid/mail';
 
 // Initialize SendGrid with your API key
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 interface EmailData {
   name: string;
