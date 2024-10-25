@@ -10,20 +10,20 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div 
-      className="fixed bottom-6 right-6 z-50 cursor-pointer w-14 h-14"
+    <button 
       onClick={handleClick}
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 p-0 border-none cursor-pointer focus:outline-none"
+      aria-label="Contact us on WhatsApp"
     >
-      <div className="bg-[#25D366] p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors duration-300 group relative w-full h-full flex items-center justify-center">
+      <div className="bg-[#25D366] rounded-full shadow-lg hover:bg-[#128C7E] transition-colors duration-300 group relative w-full h-full flex items-center justify-center">
         <MessageCircle className="h-6 w-6 text-white" />
         
-        {/* Tooltip */}
         <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block whitespace-nowrap">
           <div className="bg-white text-gray-800 text-sm py-1 px-3 rounded shadow-lg">
             Chat with us on WhatsApp
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
